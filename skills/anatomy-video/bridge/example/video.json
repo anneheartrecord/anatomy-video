@@ -1,0 +1,67 @@
+{
+ "size": [
+  1080,
+  1920
+ ],
+ "pill": "机器讲概念 · 示例",
+ "cover": {
+  "l1": "百分表",
+  "l2": "怎么读出高度",
+  "pulse": "cover.dial"
+ },
+ "chips": [
+  "托架",
+  "测头",
+  "指针"
+ ],
+ "titles": {
+  "slide": {
+   "tag": "滑动",
+   "title": "测头落到量块上"
+  },
+  "blocks": {
+   "tag": "读数",
+   "title": "18 · 14 · 10"
+  },
+  "end": {
+   "title": "按旁白驱动机器"
+  }
+ },
+ "actions": [
+  {
+   "at": "slide.move",
+   "do": "glide",
+   "from": [
+    0.3,
+    0.5
+   ],
+   "to": [
+    0.7,
+    0.5
+   ],
+   "dur": 1.4
+  },
+  {
+   "at": "blocks.b1",
+   "do": "hover",
+   "x": 0.3,
+   "y": 0.5
+  },
+  {
+   "at": "blocks.b2",
+   "do": "hover",
+   "x": 0.5,
+   "y": 0.5
+  },
+  {
+   "at": "blocks.b3",
+   "do": "hover",
+   "x": 0.72,
+   "y": 0.5
+  },
+  {
+   "at": "end",
+   "do": "leave"
+  }
+ ]
+}
