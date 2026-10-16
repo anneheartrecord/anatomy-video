@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Vertical explainer</title>
+<script src="timeline.js"></script>
+<style>html,body{margin:0;overflow:hidden;background:#f4f1ea}canvas{display:block;width:100vw;height:100vh}</style>
+</head><body><canvas id="c"></canvas>
+<script src="stage.js"></script>
+<script>
+// Minimal example: three scenes. Copy this folder into opus-video/<slug>/, then replace
+// audio/narration.txt, audio/scenes.json and the HEAD / BODY functions below.
+const EP = {
+  pill: '用代码做视频',                       // series label on every frame; '' to hide
+  chips: ['文字稿', '配音', '一帧一帧'],        // teaser chips under the cover
+  HEAD: {
+    cover: (t, c) => coverTitle(t, '不会剪辑', '也能做视频', 170, 116, c.web),
+    steps: () => sceneTitle('三步', '文字稿 → 视频'),
+    end: () => sceneTitle('', '全是代码生成的'),
+  },
+  BODY: {
+    cover: (t, c) => {
+      fillRR(140, 760, 800, 500, 30, '#fff'); fillRR(140, 760, 800, 70, 30, DARK);
+      ['#ff5f57', '#febc2e', '#28c840'].forEach((col, i) => { g.fillStyle = col; g.beginPath(); g.arc(190 + i * 40, 795, 12, 0, 7); g.fill(); });
+      txt('render(t)', 540, 1030, 96, BLUE, { a: 'center', f: 'Menlo', w: 700 });
+      stamp(t, c.web, '一个网页', 760, 1180, 56, RED, -.1);
+    },
+    steps: (t, c) => {
+      tracker(['文字稿', '配音', '逐帧渲染'], t > c.s3 ? 2 : t > c.s2 ? 1 : 0);
+      [['① 写好文字稿', c.s1, ORANGE], ['② 合成配音，对齐时间', c.s2, BLUE], ['③ 一帧一帧画，合成视频', c.s3, GREEN]].forEach(([s, t0, col], i) => card(pop(t, t0), 800 + i * 170, s, col));
+    },
+    end: (t, c) => {
+      ['封面', '字幕', '配乐'].forEach((s, i) => chip(pop(t, c._start + .4 + i * .3), 130 + i * 280, 860, s, [ORANGE, BLUE, GREEN][i], '#fff', 50));
+      if (t > c.all) { coin(540, 1100, 90); txt('代码生成', 540, 1290, 60, INK, { a: 'center' }); }
+    },
+  },
+};
+startSeries(EP);
+</script></body></html>
